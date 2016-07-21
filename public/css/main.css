@@ -1,0 +1,10 @@
+html {
+  font-size: 16px; }
+  html #main_navigation {
+    border-bottom: 1px solid #e5e5e5;
+    border-radius: 0px;
+    box-shadow: 0px 5px 5px #ccc; }
+    html #main_navigation #new_project {
+      cursor: pointer; }
+
+/*# sourceMappingURL=main.css.map */

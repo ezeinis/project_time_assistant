@@ -1,0 +1,17 @@
+#new_project_hidden_bar {
+  width: 100%;
+  background-color: #efefef;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 1s ease;
+  z-index: -10; }
+  #new_project_hidden_bar > .container {
+    padding-top: 1rem;
+    padding-bottom: 1rem; }
+
+#index_main_container {
+  box-shadow: 0px -5px 5px #ccc; }
+  #index_main_container > .container {
+    padding-top: 1rem; }
+
+/*# sourceMappingURL=index.css.map */
