@@ -1,6 +1,13 @@
+
+$color700:#0288D1;
+$color500:#03A9F4;
+$color300:#E1F5FE;
+$button-color:#FF9E80;
+$button-color-secondary:#FFD180;
+
 #new_project_hidden_bar{
     width:100%;
-    background-color:#efefef;
+    background-color:$color300;
     max-height:0;
     overflow:hidden;
     transition:max-height 1s ease;
@@ -13,9 +20,102 @@
 }
 
 #index_main_container{
-    box-shadow:0px -5px 5px #ccc;
 
     &>.container{
-        padding-top:1rem;
+        padding-top:2rem;
+
+        #sidebar,#index_main_section{
+            box-shadow:0px 0px 4px #333;
+            border-radius:3px;
+        }
+
+        #sidebar{
+            .row:nth-child(1){
+                background:$color700;
+                color:#fff;
+            }
+            .row:not(:first-child):not(:last-child){
+                border-bottom:1px solid $color700;
+            }
+            h4{
+                text-align:center;
+                padding:1rem;
+                margin:0;
+            }
+            .project_list_item_sidebar{
+                h5{
+                    text-align:center;
+                    padding:1rem;
+                    margin:0;
+                    cursor:pointer;
+                }
+                &:hover{
+                    background:$color300;
+                }
+            }
+            .active{
+                background:$color300;
+            }
+        }
+
+        #index_main_section{
+            &>.row{
+                position:relative;
+                .new_hour{
+                    position:absolute;
+                    top:0;
+                    right:1rem;
+                    background:$button-color;
+                    width:50px;
+                    height:50px;
+                    border-radius:25px;
+                    box-shadow:0px 0px 10px #333;
+                    font-size:1.5rem;
+                    color:white;
+                    &:hover{
+                        background:$button-color-secondary;
+                    }
+                }
+            }
+            .main_section_header{
+                background:$color700;
+                color:white;
+                padding-top:0.5rem;
+                padding-bottom:0.5rem;
+            }
+            #project_work_instances{
+                &>.row{
+                    padding-top:0.5rem;
+                    padding-bottom:0.5rem;
+                    &:not(:last-child){
+                        border-bottom:1px solid $color700;
+                    }
+                }
+                .hrs_container{
+                    &>.row{
+                        padding-top:0.5rem;
+                        padding-bottom:0.5rem;
+                        &:not(:last-child){
+                            border-bottom:1px solid $color700;
+                        }
+                    }
+                }
+                .created_at,.hrs{
+                    text-align:center;
+                }
+                .created_at{
+                    border-right:1px solid $color700;
+                }
+                .created_at_header{
+                    text-align:center;
+                    font-weight:700;
+                }
+                .hrs_header{
+                    text-align:center;
+                    font-weight:700;
+                }
+            }
+        }
     }
+
 }

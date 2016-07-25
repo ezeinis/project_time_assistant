@@ -1,16 +1,46 @@
+$color700:#0288D1;
+$color500:#03A9F4;
+$color300:#E1F5FE;
+$button-color:#FF9E80;
+$button-color-secondary:#FFD180;
+
 html{
     font-size:16px;
 
     #main_navigation{
-        border-bottom:1px solid #e5e5e5;
         border-radius:0px;
-        box-shadow:0px 5px 5px #ccc;
+        padding:0;
+        background:$color700;
 
         #new_project{
             cursor:pointer;
         }
+
+        .navbar-brand{
+            color:white;
+            margin-top:0.4rem;
+        }.nav-link{
+            color:white;
+        }
+
+        .nav-item{
+            padding:0.5rem;
+            &:hover{
+            background:$color500;
+            }
+        }
     }
 
+    .btn-primary{
+        background:$button-color;
+        border:0;
+
+        &:hover,&:active,&:focus{
+            background:$button-color-secondary;
+        }
+
+    }
 }
 
-
+@import 'auth.scss';
+@import 'index.scss';

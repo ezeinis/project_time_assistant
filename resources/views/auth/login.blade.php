@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('header')
-<link rel="stylesheet" type="text/css" href="css/auth.css">
-@endsection
-
 @section('content')
 
 <div class="container">

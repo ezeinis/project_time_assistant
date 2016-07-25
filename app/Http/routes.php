@@ -16,6 +16,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/index','PagesController@index');
 
     Route::post('/project/create','ProjectController@create');
+
+    Route::post('/project/add_hours','ProjectController@add_hours');
 });
 
 Route::auth();
