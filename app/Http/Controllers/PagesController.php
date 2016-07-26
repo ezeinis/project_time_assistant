@@ -10,9 +10,12 @@ class PagesController extends Controller
 {
     public function index()
     {
-        $projects=Project::with('work_instances')->get();
-        //dd($projects);
-        $projects_json=json_encode($projects);
-        return view('pages.index',compact('projects','projects_json'));
+        $first_project=Project::with('work_instances')->first();
+        $projects_names=[];
+        $projects=Project::all();
+        foreach ($projects as $project) {
+            array_push($projects_names, $project->name);
+        }
+        return view('pages.index',compact('first_project','projects_names'));
     }
 }

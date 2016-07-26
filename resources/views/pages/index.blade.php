@@ -22,7 +22,7 @@
 <div id="index_main_container">
     <div class="container">
         <div class="row">
-        @if(!$projects->isEmpty())
+        @if(!empty($projects_names))
             <div id="sidebar" class="col-md-3">
                 <div class="row">
                     <div class="col-md-12">
@@ -30,14 +30,14 @@
                     </div>
                 </div>
                 <?php $i=0; ?>
-                @foreach($projects as $project)
+                @foreach($projects_names as $project_name)
                     @if($i==0)
-                        <div id="sidebar_project_{{$project->id}}" class="row project_list_item_sidebar active">
+                        <div id="sidebar_project_{{$project_name}}" class="row project_list_item_sidebar active">
                     @else
-                        <div id="sidebar_project_{{$project->id}}" class="row project_list_item_sidebar">
+                        <div id="sidebar_project_{{$project_name}}" class="row project_list_item_sidebar">
                     @endif
                         <div class="col-md-12">
-                            <h5>{{$project->name}}</h5>
+                            <h5>{{$project_name}}</h5>
                         </div>
                     </div>
                     <?php $i++; ?>
@@ -57,7 +57,7 @@
                           <div class="modal-body">
                             <form action="/project/add_hours" method="POST">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
-                            <input type="hidden" name="project_id" value="{{$projects[0]->id}}">
+                            <input type="hidden" name="project_id" value="{{$first_project->id}}">
                             <div class="form-group row">
                                 <label for="hours_worked" class="col-xs-3 form-control-label">Hours Worked:</label>
                                 <div class="col-xs-9">
@@ -81,12 +81,12 @@
                     <div class="col-md-12 main_section_header">
                         <div class="row">
                             <div class="col-md-12">
-                                <h4>{{$projects[0]->name}}</h4>
+                                <h4>{{$first_project->name}}</h4>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h5>Hours worked: {{$projects[0]->total_hrs}}</h5>
+                                <h5>Hours worked: {{$first_project->total_hrs}}</h5>
                             </div>
                         </div>
                         <div class="row">
@@ -95,7 +95,7 @@
                             </div>
                         </div>
                     </div>
-                    <button id="new_hour_project_{{$project->id}}" class="btn new_hour" data-toggle="modal" data-target="#myModal">+</button>
+                    <button id="new_hour_project_{{$first_project->id}}" class="btn new_hour" data-toggle="modal" data-target="#myModal">+</button>
                 </div>
                 <div id="project_work_instances">
                 <div class="row">
@@ -106,8 +106,8 @@
                         Hours
                     </div>
                 </div>
-                <div id='project_{{$projects[0]->id}}_hours' class='hrs_container'>
-                @foreach($projects[0]->work_instances as $work_instance)
+                <div id='project_{{$first_project->id}}_hours' class='hrs_container'>
+                @foreach($first_project->work_instances as $work_instance)
                 <div class="row">
                     <div class="col-md-6 created_at">
                         {{$work_instance->created_at}}
@@ -127,6 +127,5 @@
 @endsection
 
 @section('js')
-    <script type="text/javascript">var projects = <?php echo $projects_json; ?>;</script>
     <script src="js/index.js"></script>
 @endsection
