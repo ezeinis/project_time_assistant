@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
     @yield('header')
 </head>
 <body>
@@ -46,6 +48,7 @@
 
     @yield('content')
 
+    <script src="js/sweetalert.min.js"></script>
     <script src="js/jquery-2.2.5.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     @yield('js')

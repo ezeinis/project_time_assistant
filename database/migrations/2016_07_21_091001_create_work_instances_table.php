@@ -14,7 +14,7 @@ class CreateWorkInstancesTable extends Migration
     {
         Schema::create('work_instances', function (Blueprint $table) {
             $table->increments('id');
-            $table->string("note");
+            $table->text("note");
             $table->float("hrs");
             $table->integer('project_id')->unsigned();
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');

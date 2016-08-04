@@ -17,6 +17,6 @@ class Project extends Model
 
     public function work_instances()
     {
-        return $this->hasMany(Work_instance::class);
+        return $this->hasMany(Work_instance::class)->orderBy('created_at','DESC');
     }
 }

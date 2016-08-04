@@ -22,13 +22,33 @@ class ProjectController extends Controller
 
     public function add_hours(Request $request)
     {
-        $project = Project::findOrFail($request->project_id);
-        $project->total_hrs+=$request->hours_worked;
+        $project = Project::where('name',$request->project_name)->first();
+        $project->total_hrs+=$request->hrs;
         $project->save();
         $work_instance = new Work_instance;
-        $work_instance->hrs=$request->hours_worked;
-        $work_instance->project_id=$request->project_id;
+        $work_instance->hrs=$request->hrs;
+        $work_instance->note=$request->note;
+        $work_instance->project_id=$project->id;
         $work_instance->save();
-        return back();
+        $hrs=$request->hrs;
+        $date=$work_instance->created_at;
+        return array(view('includes.single_row_hour_instance',compact('work_instance'))->render(),$project->total_hrs);
+    }
+
+    public function get_work_instance(Request $request)
+    {
+        $project = Project::where('name',$request->project_name)->with('work_instances')->first();
+        //dd($project->toArray());
+        return array($project->name,$project->total_hrs,view('includes.hrs_container_view',compact('project'))->render());
+    }
+
+    public function delete_work_instance(Request $request)
+    {
+        $work_instance = Work_instance::find($request->work_instance_id);
+        $project = Project::where('id',$work_instance->project_id)->first();
+        $project->total_hrs-=$work_instance->hrs;
+        $project->save();
+        $work_instance->delete();
+        return $project->total_hrs;
     }
 }

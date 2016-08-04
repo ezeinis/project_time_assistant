@@ -44,7 +44,10 @@
       border-radius: 25px;
       box-shadow: 0px 0px 10px #333;
       font-size: 1.5rem;
-      color: white; }
+      color: white;
+      padding: 0 !important; }
+      #index_main_container > .container #index_main_section > .row .new_hour img {
+        width: 26px; }
       #index_main_container > .container #index_main_section > .row .new_hour:hover {
         background: #FFD180; }
   #index_main_container > .container #index_main_section .main_section_header {
@@ -59,12 +62,22 @@
       border-bottom: 1px solid #0288D1; }
   #index_main_container > .container #index_main_section #project_work_instances .hrs_container > .row {
     padding-top: 0.5rem;
-    padding-bottom: 0.5rem; }
+    padding-bottom: 0.5rem;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
     #index_main_container > .container #index_main_section #project_work_instances .hrs_container > .row:not(:last-child) {
       border-bottom: 1px solid #0288D1; }
-  #index_main_container > .container #index_main_section #project_work_instances .created_at, #index_main_container > .container #index_main_section #project_work_instances .hrs {
+  #index_main_container > .container #index_main_section #project_work_instances .hrs_container .fa-times {
+    cursor: pointer; }
+    #index_main_container > .container #index_main_section #project_work_instances .hrs_container .fa-times:hover {
+      color: red; }
+  #index_main_container > .container #index_main_section #project_work_instances .created_at, #index_main_container > .container #index_main_section #project_work_instances .hrs, #index_main_container > .container #index_main_section #project_work_instances .notes, #index_main_container > .container #index_main_section #project_work_instances .del_work_instance {
     text-align: center; }
-  #index_main_container > .container #index_main_section #project_work_instances .created_at {
+  #index_main_container > .container #index_main_section #project_work_instances .created_at, #index_main_container > .container #index_main_section #project_work_instances .hrs, #index_main_container > .container #index_main_section #project_work_instances .notes {
     border-right: 1px solid #0288D1; }
   #index_main_container > .container #index_main_section #project_work_instances .created_at_header {
     text-align: center;

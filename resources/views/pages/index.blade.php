@@ -23,7 +23,9 @@
     <div class="container">
         <div class="row">
         @if(!empty($projects_names))
-            <div id="sidebar" class="col-md-3">
+
+            <!-- sidebar -->
+                <div id="sidebar" class="col-md-3">
                 <div class="row">
                     <div class="col-md-12">
                         <h4>Active Projects</h4>
@@ -42,7 +44,8 @@
                     </div>
                     <?php $i++; ?>
                 @endforeach
-            </div>
+                </div>
+            <!-- sidebar end -->
             <div class="col-md-1">
             </div>
             <!-- modal -->
@@ -55,19 +58,21 @@
                             <h4 class="modal-title">Add Work Instance</h4>
                           </div>
                           <div class="modal-body">
-                            <form action="/project/add_hours" method="POST">
-                            <input type="hidden" name="_token" value="{{csrf_token()}}">
-                            <input type="hidden" name="project_id" value="{{$first_project->id}}">
                             <div class="form-group row">
                                 <label for="hours_worked" class="col-xs-3 form-control-label">Hours Worked:</label>
                                 <div class="col-xs-9">
                                     <input type="text" class="form-control" id="hours_worked" name="hours_worked">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="note" class="col-xs-3 form-control-label">Note:</label>
+                                <div class="col-xs-9">
+                                    <input type="text" class="form-control" id="note" name="note">
+                                </div>
+                            </div>
                           </div>
                           <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
+                            <button type="button" class="btn btn-primary new_hour_submit_button">Submit</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                           </div>
                         </div>
@@ -75,51 +80,64 @@
                       </div>
                     </div>
             <!-- modal end -->
+            <!-- main section -->
+                <div id="index_main_section" class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12 main_section_header">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4 id="project_name_header">{{$first_project->name}}</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5 id="project_hrs_header">Hours worked: {{$first_project->total_hrs}}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5>Project description: </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn new_hour" data-toggle="modal" data-target="#myModal"><img src="/images/plus-24.png"></button>
+                    </div>
+                    <div id="project_work_instances">
+                        <div class="row">
+                            <div class="col-md-4 created_at_header">
+                                Date
+                            </div>
+                            <div class="col-md-1 hrs_header">
+                                Hours
+                            </div>
+                            <div class="col-md-6 hrs_header">
+                                Notes
+                            </div>
+                            <div class="col-md-1">
 
-            <div id="index_main_section" class="col-md-8">
-                <div class="row">
-                    <div class="col-md-12 main_section_header">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4>{{$first_project->name}}</h4>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h5>Hours worked: {{$first_project->total_hrs}}</h5>
+                        <div class='hrs_container'>
+                            @foreach($first_project->work_instances as $work_instance)
+                            <div class="row" id="work_instance_row_{{$work_instance->id}}">
+                                <div class="col-md-4 created_at">
+                                    {{$work_instance->created_at}}
+                                </div>
+                                <div class="col-md-1 hrs">
+                                    {{$work_instance->hrs}}
+                                </div>
+                                <div class="col-md-6 notes">
+                                    {{myTruncate($work_instance->note)}}
+                                </div>
+                                <div class="col-md-1 del_work_instance">
+                                    <i id="del_{{$work_instance->id}}" class="fa fa-times" aria-hidden="true"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h5>Project description: </h5>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
-                    <button id="new_hour_project_{{$first_project->id}}" class="btn new_hour" data-toggle="modal" data-target="#myModal">+</button>
                 </div>
-                <div id="project_work_instances">
-                <div class="row">
-                    <div class="col-md-6 created_at_header">
-                        Date
-                    </div>
-                    <div class="col-md-6 hrs_header">
-                        Hours
-                    </div>
-                </div>
-                <div id='project_{{$first_project->id}}_hours' class='hrs_container'>
-                @foreach($first_project->work_instances as $work_instance)
-                <div class="row">
-                    <div class="col-md-6 created_at">
-                        {{$work_instance->created_at}}
-                    </div>
-                    <div class="col-md-6 hrs">
-                        {{$work_instance->hrs}}
-                    </div>
-                </div>
-                @endforeach
-                </div>
-                </div>
-            </div>
+            <!-- end main section -->
             @endif
         </div>
     </div>
