@@ -138,4 +138,45 @@ $('.new_hour_submit_button').on("click",function(){
     });
 });
 
+// edit-save work instance start
+$(document.body).on("click",'.fa-pencil',function(){
+    var full_id = $(this).attr('id');
+    var id = full_id.split("_")[1];
+    //hide full size note
+    $('#full_size_note_'+id).css("display","none");
+    //deixe save button
+    $(this).css("display","none");
+    $('#save_'+id).css("display","inline-block");
+    //deixe hrs input
+    $('#hrs_input_'+id).css("display","inline-block");
+    $('#hrs_regular_'+id).css("display","none");
+    //deixe note textarea
+    $('#trunc_note_'+id).css("display","none");
+    $('#edit_note_'+id).css("display","inline-block");
+});
+
+$(document.body).on("click",'.fa-save',function(){
+    var full_id = $(this).attr('id');
+    var id = full_id.split("_")[1];
+
+    var note = $("#edit_note_"+id+">textarea").val();
+    var hrs = $("#hrs_input_"+id).val();
+
+    $.get(
+        "/work_instance/edit",
+        {"id":id,"hrs":hrs,"note":note},
+        function( data ) {
+            $('.hrs_container').html(data[0]);
+            $('#project_hrs_header').text("Hours worked: "+data[1]);
+            }).done(function() {
+                $('#work_instance_row_'+id).css('background-color','#81C784');
+                setTimeout(function(){$('#work_instance_row_'+id).css('background-color','white');},300);
+    });
+
+});
+// edit-save work instance end
+
+
+
+
 //# sourceMappingURL=index.js.map

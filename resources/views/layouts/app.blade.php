@@ -47,7 +47,6 @@
     </nav>
 
     @yield('content')
-
     <script src="js/sweetalert.min.js"></script>
     <script src="js/jquery-2.2.5.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

@@ -22,6 +22,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/project/get_work_instance_view','ProjectController@get_work_instance');
 
     Route::get('/work_instance/delete','ProjectController@delete_work_instance');
+
+    Route::get('/work_instance/edit','ProjectController@edit_work_instance');
 });
 
 Route::auth();

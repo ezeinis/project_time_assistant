@@ -61,6 +61,7 @@
     #index_main_container > .container #index_main_section #project_work_instances > .row:not(:last-child) {
       border-bottom: 1px solid #0288D1; }
   #index_main_container > .container #index_main_section #project_work_instances .hrs_container > .row {
+    transition: background-color 1s ease;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     display: -ms-flexbox;
@@ -71,6 +72,10 @@
     justify-content: center; }
     #index_main_container > .container #index_main_section #project_work_instances .hrs_container > .row:not(:last-child) {
       border-bottom: 1px solid #0288D1; }
+    #index_main_container > .container #index_main_section #project_work_instances .hrs_container > .row:hover .full_size_note {
+      display: inline-block; }
+    #index_main_container > .container #index_main_section #project_work_instances .hrs_container > .row:hover .trunc_note {
+      display: none; }
   #index_main_container > .container #index_main_section #project_work_instances .hrs_container .fa-times {
     cursor: pointer; }
     #index_main_container > .container #index_main_section #project_work_instances .hrs_container .fa-times:hover {
@@ -85,5 +90,21 @@
   #index_main_container > .container #index_main_section #project_work_instances .hrs_header {
     text-align: center;
     font-weight: 700; }
+  #index_main_container > .container #index_main_section #project_work_instances .notes .edit_note, #index_main_container > .container #index_main_section #project_work_instances .notes .full_size_note {
+    display: none;
+    width: 100%; }
+  #index_main_container > .container #index_main_section #project_work_instances .del_work_instance .fa-save {
+    cursor: pointer;
+    display: none; }
+    #index_main_container > .container #index_main_section #project_work_instances .del_work_instance .fa-save:hover {
+      color: green; }
+  #index_main_container > .container #index_main_section #project_work_instances .del_work_instance .fa-pencil {
+    cursor: pointer; }
+    #index_main_container > .container #index_main_section #project_work_instances .del_work_instance .fa-pencil:hover {
+      color: #0288D1; }
+  #index_main_container > .container #index_main_section #project_work_instances .hrs input {
+    padding: 0;
+    text-align: center;
+    display: none; }
 
 /*# sourceMappingURL=index.css.map */

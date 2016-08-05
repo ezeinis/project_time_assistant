@@ -51,4 +51,18 @@ class ProjectController extends Controller
         $work_instance->delete();
         return $project->total_hrs;
     }
+
+    public function edit_work_instance(Request $request)
+    {
+        $work_instance = Work_instance::find($request->id);
+        $old_hrs=$work_instance->hrs;
+        $work_instance->hrs = $request->hrs;
+        $work_instance->note = $request->note;
+        $work_instance->save();
+        $project = Project::where('id',$work_instance->project_id)->with('work_instances')->first();
+        $project->total_hrs-=$old_hrs;
+        $project->total_hrs+=$request->hrs;
+        $project->save();
+        return array(view('includes.hrs_container_view',compact('project'))->render(),$project->total_hrs);
+    }
 }
